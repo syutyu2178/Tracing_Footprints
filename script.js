@@ -175,23 +175,32 @@ function renderReview(period) {
         const card = document.createElement("div");
         card.className = "log-card";
 
-        const dateEl = document.createElement("strong");
-        dateEl.textContent = log.date;
-        card.appendChild(dateEl);
-
         appendSection(card, "できたこと", log.done);
         appendSection(card, "次回にできるといいこと", log.nextHope);
         appendSection(card, "次回の自分に一言", log.nextSelfMessage);
         appendSection(card, "気分", log.moods);
 
-        // 削除ボタン追加
+
+        // ヘッダー行作成
+        const header = document.createElement("div");
+        header.classList.add("log-header");
+
+        // 日付
+        const dateEl = document.createElement("strong");
+        dateEl.textContent = log.date;
+
+        // 削除ボタン
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "削除";
-        deleteBtn.style.marginTop = "10px";
-        deleteBtn.style.background = "#b23a48";
+        deleteBtn.classList.add("delete-btn");
         deleteBtn.onclick = () => deleteLog(log.id);
 
-        card.appendChild(deleteBtn);
+        // ヘッダーに追加
+        header.appendChild(dateEl);
+        header.appendChild(deleteBtn);
+
+        // カードに追加
+        card.appendChild(header);
         list.appendChild(card);
 
         const dot = document.createElement("span");
