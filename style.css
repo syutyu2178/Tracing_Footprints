@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f4efe7;
+  color: #2f3e46;
+}
+
+header {
+  padding: 20px;
+  text-align: center;
+}
+
+nav button {
+  margin: 0 5px;
+}
+
+h1, h2, h3 {
+  font-weight: 500;
+}
+
+.view {
+  display: none;
+  padding: 20px;
+  padding-bottom: 100px;
+}
+
+.view.active {
+  display: block;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 16px;
+  border: 1px solid #d8d2c8;
+  background: #ffffff;
+}
+
+button {
+  border-radius: 20px;
+  border: none;
+  padding: 10px 16px;
+  background: #3a5a40;
+  color: white;
+}
+
+.mood-select button {
+  margin: 5px 5px 0 0;
+  background: #52796f;
+}
+
+.save-btn {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  background: #344e41;
+}
+
+.log-card {
+  background: white;
+  padding: 15px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.highlight {
+  background: #d8f3dc;
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+
+#dateDots span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin: 4px;
+  border-radius: 50%;
+  background: #52796f;
+}

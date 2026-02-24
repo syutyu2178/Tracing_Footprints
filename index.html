@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>あしあとれーす</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>あしあとれーす</h1>
+    <nav>
+      <button id="navWrite">足跡を付ける</button>
+      <button id="navReview">背中を振り返る</button>
+    </nav>
+  </header>
+
+  <!-- 記録画面 -->
+  <main id="writeView" class="view active">
+
+    <section>
+      <h2>今日できたこと</h2>
+      <div id="doneInputs"></div>
+    </section>
+
+    <section>
+      <h2>今日できなかったこと</h2>
+      <div id="notDoneInputs"></div>
+    </section>
+
+    <section>
+      <h2>次回にできるといいこと</h2>
+      <div id="nextHopeInputs"></div>
+    </section>
+
+    <section>
+      <h2>気分（任意）</h2>
+      <div class="mood-select">
+        <button data-mood="穏やか">穏やか</button>
+        <button data-mood="少し疲れた">少し疲れた</button>
+        <button data-mood="前向き">前向き</button>
+        <button data-mood="静か">静か</button>
+      </div>
+    </section>
+
+    <button id="saveBtn" class="save-btn">保存する</button>
+  </main>
+
+  <!-- 振り返り画面 -->
+  <main id="reviewView" class="view">
+
+    <section class="period-select">
+      <button data-period="7">7日</button>
+      <button data-period="30">30日</button>
+      <button data-period="all">全体</button>
+    </section>
+
+    <section id="logList"></section>
+
+    <section>
+      <h3>よく使われる言葉</h3>
+      <div id="wordCloud"></div>
+    </section>
+
+    <section>
+      <h3>記録日</h3>
+      <div id="dateDots"></div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
