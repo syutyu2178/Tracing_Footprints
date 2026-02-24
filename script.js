@@ -79,6 +79,7 @@ document.getElementById("saveBtn").addEventListener("click", () => {
     const date = new Date().toISOString().split("T")[0];
 
     const newLog = {
+        id: Date.now(),   // ← 削除用ID追加
         date,
         done: [...doneContainer.querySelectorAll("textarea")]
             .map(t => t.value.trim())
@@ -138,6 +139,18 @@ document.querySelectorAll(".period-select button").forEach(btn => {
 });
 
 /* ---------------------------
+   削除処理
+---------------------------- */
+function deleteLog(id) {
+    const confirmed = confirm("この記録を削除しますか？");
+    if (!confirmed) return;
+
+    logs = logs.filter(log => log.id !== id);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(logs));
+    renderReview("all");
+}
+
+/* ---------------------------
    振り返り表示
 ---------------------------- */
 function renderReview(period) {
@@ -158,8 +171,6 @@ function renderReview(period) {
         filtered = logs.filter(l => new Date(l.date) >= cutoff);
     }
 
-    const allTexts = [];
-
     filtered.forEach(log => {
         const card = document.createElement("div");
         card.className = "log-card";
@@ -173,19 +184,23 @@ function renderReview(period) {
         appendSection(card, "次回の自分に一言", log.nextSelfMessage);
         appendSection(card, "気分", log.moods);
 
-        list.appendChild(card);
+        // 削除ボタン追加
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "削除";
+        deleteBtn.style.marginTop = "10px";
+        deleteBtn.style.background = "#b23a48";
+        deleteBtn.onclick = () => deleteLog(log.id);
 
-        allTexts.push(...log.done, ...log.nextHope, ...log.nextSelfMessage);
+        card.appendChild(deleteBtn);
+        list.appendChild(card);
 
         const dot = document.createElement("span");
         dateDots.appendChild(dot);
     });
-
-    renderWordCloud(allTexts);
 }
 
 /* ---------------------------
-   セクション描画（安全描画）
+   セクション描画
 ---------------------------- */
 function appendSection(parent, title, items) {
     if (!items || items.length === 0) return;
@@ -207,53 +222,4 @@ function appendSection(parent, title, items) {
     });
 
     parent.appendChild(p);
-}
-
-/* ---------------------------
-   簡易ワードクラウド
----------------------------- */
-function renderWordCloud(texts) {
-    const wordCloud = document.getElementById("wordCloud");
-
-    const frequency = {};
-
-    texts.forEach(text => {
-        text.split("").forEach(char => {
-            if (char.trim() === "") return;
-            frequency[char] = (frequency[char] || 0) + 1;
-        });
-    });
-
-    Object.entries(frequency)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 20)
-        .forEach(([char]) => {
-            const span = document.createElement("span");
-            span.textContent = char;
-            span.style.marginRight = "8px";
-            wordCloud.appendChild(span);
-        });
-}
-
-/* ---------------------------
-    カムバックモーダル
----------------------------- */
-function initComeback() {
-    const modal = document.getElementById("comebackModal");
-    const today = new Date().toISOString().split("T")[0];
-
-    const alreadyLoggedToday = logs.some(log => log.date === today);
-
-    if (!alreadyLoggedToday) {
-        modal.classList.remove("hidden");
-    }
-
-    document.getElementById("comebackYes").onclick = () => {
-        modal.classList.add("hidden");
-        switchView("writeView");
-    };
-
-    document.getElementById("comebackNo").onclick = () => {
-        modal.classList.add("hidden");
-    };
 }
