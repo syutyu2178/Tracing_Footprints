@@ -1,0 +1,38 @@
+.comeback-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.comeback-modal.hidden {
+  display: none;
+}
+
+.comeback-content {
+  background: white;
+  padding: 24px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 320px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.comeback-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.comeback-buttons button {
+  flex: 1;
+}
+
+.comeback-buttons .secondary {
+  background: #9aa5a1;
+}

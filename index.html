@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>あしあとれーす</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="comeback.css">
 </head>
+
 <body>
 
   <header>
@@ -25,22 +28,20 @@
     </section>
 
     <section>
-      <h2>今日できなかったこと</h2>
-      <div id="notDoneInputs"></div>
-    </section>
-
-    <section>
       <h2>次回にできるといいこと</h2>
       <div id="nextHopeInputs"></div>
     </section>
 
     <section>
+      <h2>次回の自分に一言</h2>
+      <div id="nextSelfMessageInputs"></div>
+    </section>
+
+    <section>
       <h2>気分（任意）</h2>
-      <div class="mood-select">
-        <button data-mood="穏やか">穏やか</button>
-        <button data-mood="少し疲れた">少し疲れた</button>
-        <button data-mood="前向き">前向き</button>
-        <button data-mood="静か">静か</button>
+      <div class="mood-wrapper">
+        <div id="selectedMoods" class="mood-column selected"></div>
+        <div id="unselectedMoods" class="mood-column unselected"></div>
       </div>
     </section>
 
@@ -49,7 +50,6 @@
 
   <!-- 振り返り画面 -->
   <main id="reviewView" class="view">
-
     <section class="period-select">
       <button data-period="7">7日</button>
       <button data-period="30">30日</button>
@@ -70,6 +70,16 @@
 
   </main>
 
+  <div id="comebackContainer"></div>
+  <script>
+    fetch("comeback.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("comebackContainer").innerHTML = html;
+        initComeback();
+      });
+  </script>
   <script src="script.js"></script>
 </body>
+
 </html>
