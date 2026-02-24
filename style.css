@@ -133,3 +133,17 @@ button {
   margin-bottom: 6px;
   font-size: 14px;
 }
+
+/* ログカード上部レイアウト */
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 削除ボタン */
+.delete-btn {
+  background: #b23a48;
+  padding: 6px 12px;
+  font-size: 14px;
+}
