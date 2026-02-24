@@ -232,3 +232,26 @@ function appendSection(parent, title, items) {
 
     parent.appendChild(p);
 }
+
+/* ---------------------------
+    カムバックモーダル
+---------------------------- */
+function initComeback() {
+    const modal = document.getElementById("comebackModal");
+    const today = new Date().toISOString().split("T")[0];
+
+    const alreadyLoggedToday = logs.some(log => log.date === today);
+
+    if (!alreadyLoggedToday) {
+        modal.classList.remove("hidden");
+    }
+
+    document.getElementById("comebackYes").onclick = () => {
+        modal.classList.add("hidden");
+        switchView("writeView");
+    };
+
+    document.getElementById("comebackNo").onclick = () => {
+        modal.classList.add("hidden");
+    };
+}
